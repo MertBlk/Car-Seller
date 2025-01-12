@@ -2,12 +2,12 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FiSearch, FiBell, FiHeart, FiUser, FiMessageCircle } from 'react-icons/fi';
 
-function Head({ darkText }) {
+function Head() {
   const location = useLocation();
-  const isProductsPage = location.pathname.includes('/products');
+  const isDarkText = location.pathname.includes('/arac/') || location.pathname === '/products';
 
   return (
-    <nav className={`navbar ${darkText ? 'navbar-dark-text' : ''} ${isProductsPage ? 'navbar-products' : ''}`}>
+    <nav className={`navbar ${isDarkText ? 'navbar-dark-text' : ''}`}>
       <div className="navbar-container">
         {/* Sol Grup */}
         <div className="nav-left">

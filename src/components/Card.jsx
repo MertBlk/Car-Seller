@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { FiHeart, FiShare2, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function ProductCard({ car }) {
   const [currentImage, setCurrentImage] = useState(0);
+  const navigate = useNavigate();
+
   // Tüm resimleri bir dizide topla ve boş olanları filtrele
   const images = [car.image, car.image2, car.image3].filter(Boolean);
 
@@ -30,11 +32,18 @@ function ProductCard({ car }) {
     price: car.price,
     images: images, // Filtrelenmiş resim dizisi
     description: car.description || `${car.brand} ${car.model} ${car.year} model, ${car.fuel} yakıt tipli, ${car.km.toLocaleString('tr-TR')} KM'de.`, // Varsayılan açıklama
-    listingDate: car.listingDate
+    listingDate: car.listingDate,
+  };
+
+  const handleCardClick = () => {
+    navigate(`/arac/${car.id}?data=${encodeURIComponent(JSON.stringify(carData))}`);
   };
 
   return (
-    <div className="Car">
+    <div 
+      className="Car" 
+      onClick={handleCardClick} // Card'a tıklanınca yönlendirme
+    >
       <div className="image-container">
         {images.length > 1 && (
           <button className="slider-btn left" onClick={prevImage}>
@@ -68,6 +77,7 @@ function ProductCard({ car }) {
         <Link 
           to={`/arac/${car.id}?data=${encodeURIComponent(JSON.stringify(carData))}`} 
           className="incele-btn"
+          onClick={(e) => e.stopPropagation()} // Link tıklanınca Card tıklamasını durdur
         >
           İncele
         </Link>
