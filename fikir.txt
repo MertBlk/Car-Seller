@@ -1,0 +1,1 @@
+araba card'ına Mouse hover olduğunda diğer bilgilerin gözükmesi
