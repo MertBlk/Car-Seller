@@ -1,1 +1,3 @@
 araba card'ına Mouse hover olduğunda diğer bilgilerin gözükmesi
+
+Her alarm çaldığında farklı rastgele müzik çalması

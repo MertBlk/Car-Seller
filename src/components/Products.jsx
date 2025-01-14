@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
 import ProductCard from './Card';
 import Filters from './Filters';
 
 function Products() {
-  const cars = [
+  // Araç verilerini tanımlama
+  const carsData = [
     {
       id: 1,
       brand: "Alfa Romeo",
@@ -83,7 +83,7 @@ function Products() {
     },
     {
       id: 7,
-      brand: "Audi ",
+      brand: "Audi",
       model: "RS6",
       year: 2021,
       fuel: "Dizel",
@@ -109,54 +109,69 @@ function Products() {
     },
   ];
 
-  const [filteredCars, setFilteredCars] = useState(cars);
-  
-  const handleFilterChange = (filters) => {
-    let result = cars;
+  const [allCars] = useState(carsData);
+  const [filteredCars, setFilteredCars] = useState(carsData);
+  const [selectedBrands, setSelectedBrands] = useState([]);
+  const [selectedFuels, setSelectedFuels] = useState([]);
+  const [priceRange, setPriceRange] = useState({ min: '', max: '' });
+  const [yearRange, setYearRange] = useState({ min: '', max: '' });
 
-    if (filters.brand) {
+  const applyFilters = () => {
+    let result = [...allCars];
+
+    // Marka filtresi
+    if (selectedBrands.length > 0) {
       result = result.filter(car => 
-        car.brand.toLowerCase() === filters.brand.toLowerCase()
+        selectedBrands.includes(car.brand.toLowerCase())
       );
     }
 
-    if (filters.model) {
-      const modelName = filters.model.split(' (')[0];
+    // Yakıt filtresi
+    if (selectedFuels.length > 0) {
       result = result.filter(car => 
-        car.model.toLowerCase().includes(modelName.toLowerCase())
+        selectedFuels.includes(car.fuel.toLowerCase())
       );
     }
 
-    if (filters.minPrice) {
-      result = result.filter(car => car.price >= Number(filters.minPrice));
+    // Fiyat aralığı
+    if (priceRange.min) {
+      result = result.filter(car => car.price >= Number(priceRange.min));
     }
-    if (filters.maxPrice) {
-      result = result.filter(car => car.price <= Number(filters.maxPrice));
-    }
-
-    if (filters.minYear) {
-      result = result.filter(car => car.year >= Number(filters.minYear));
-    }
-    if (filters.maxYear) {
-      result = result.filter(car => car.year <= Number(filters.maxYear));
+    if (priceRange.max) {
+      result = result.filter(car => car.price <= Number(priceRange.max));
     }
 
-    if (filters.fuel) {
-      result = result.filter(car => 
-        car.fuel.toLowerCase() === filters.fuel.toLowerCase()
-      );
+    // Yıl aralığı
+    if (yearRange.min) {
+      result = result.filter(car => car.year >= Number(yearRange.min));
+    }
+    if (yearRange.max) {
+      result = result.filter(car => car.year <= Number(yearRange.max));
     }
 
     setFilteredCars(result);
   };
 
+  useEffect(() => {
+    applyFilters();
+  }, [selectedBrands, selectedFuels, priceRange, yearRange]);
+
   return (
     <div className="products-container">
       <div className="d-flex">
         <div className="filters-wrapper">
-          <Filters onFilterChange={handleFilterChange} />
+          <Filters 
+            selectedBrands={selectedBrands}
+            setSelectedBrands={setSelectedBrands}
+            selectedFuels={selectedFuels}
+            setSelectedFuels={setSelectedFuels}
+            priceRange={priceRange}
+            setPriceRange={setPriceRange}
+            yearRange={yearRange}
+            setYearRange={setYearRange}
+            applyFilters={applyFilters} // Yeni prop
+          />
         </div>
-
         <div className="cards-wrapper">
           <div className="cards-grid">
             {filteredCars.map((car) => (
