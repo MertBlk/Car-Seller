@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import ProductCard from './Card';
 import Filters from './Filters';
@@ -109,16 +109,57 @@ function Products() {
     },
   ];
 
+  const [filteredCars, setFilteredCars] = useState(cars);
+  
+  const handleFilterChange = (filters) => {
+    let result = cars;
+
+    if (filters.brand) {
+      result = result.filter(car => 
+        car.brand.toLowerCase() === filters.brand.toLowerCase()
+      );
+    }
+
+    if (filters.model) {
+      const modelName = filters.model.split(' (')[0];
+      result = result.filter(car => 
+        car.model.toLowerCase().includes(modelName.toLowerCase())
+      );
+    }
+
+    if (filters.minPrice) {
+      result = result.filter(car => car.price >= Number(filters.minPrice));
+    }
+    if (filters.maxPrice) {
+      result = result.filter(car => car.price <= Number(filters.maxPrice));
+    }
+
+    if (filters.minYear) {
+      result = result.filter(car => car.year >= Number(filters.minYear));
+    }
+    if (filters.maxYear) {
+      result = result.filter(car => car.year <= Number(filters.maxYear));
+    }
+
+    if (filters.fuel) {
+      result = result.filter(car => 
+        car.fuel.toLowerCase() === filters.fuel.toLowerCase()
+      );
+    }
+
+    setFilteredCars(result);
+  };
+
   return (
     <div className="products-container">
       <div className="d-flex">
         <div className="filters-wrapper">
-          <Filters />
+          <Filters onFilterChange={handleFilterChange} />
         </div>
 
         <div className="cards-wrapper">
           <div className="cards-grid">
-            {cars.map((car) => (
+            {filteredCars.map((car) => (
               <div key={car.id} className="card-item">
                 <ProductCard car={car} />
               </div>
@@ -130,4 +171,4 @@ function Products() {
   );
 }
 
-export default Products; 
+export default Products;

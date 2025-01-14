@@ -74,13 +74,7 @@ function ProductCard({ car }) {
           <span>•</span>
           <span>{car.km.toLocaleString('tr-TR')} KM</span>
         </div>
-        <Link 
-          to={`/arac/${car.id}?data=${encodeURIComponent(JSON.stringify(carData))}`} 
-          className="incele-btn"
-          onClick={(e) => e.stopPropagation()} // Link tıklanınca Card tıklamasını durdur
-        >
-          İncele
-        </Link>
+        
       </div>
     </div>
   );
