@@ -30,6 +30,7 @@ function ProductCard({ car }) {
     transmission: car.transmission || 'Otomatik', // Varsayılan değer
     color: car.color || 'Belirtilmemiş', // Varsayılan değer
     price: car.price,
+    damage: car.damage || 'Belirtilmemiş', // Varsayılan değer
     images: images, // Filtrelenmiş resim dizisi
     description: car.description || `${car.brand} ${car.model} ${car.year} model, ${car.fuel} yakıt tipli, ${car.km.toLocaleString('tr-TR')} KM'de.`, // Varsayılan açıklama
     listingDate: car.listingDate,

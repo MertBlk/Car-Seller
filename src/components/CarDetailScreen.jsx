@@ -72,6 +72,8 @@ function AracDetay() {
           <h1>{carData.brand} {carData.model}</h1>
           <div className="price">{carData.price} TL</div>
           
+          
+
           <div className="specs-container">
             <div className="spec-item">
               <span className="label">Yıl:</span>
@@ -93,18 +95,39 @@ function AracDetay() {
               <span className="label">Renk:</span>
               <span className="value">{carData.color}</span>
             </div>
+            <div className="spec-item">
+              <span className="label">Hasar:</span>
+              <span className="value">{carData.damage}</span>
+            </div>
           </div>
+
+          {carData.listingDate && (
+            <div className="listing-date">
+              <span className="label">İlan Tarihi:</span>
+              <span className="value">
+                {new Date(carData.listingDate).toLocaleDateString('tr-TR', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric'
+                })}
+              </span>
+            </div>
+          )}
 
           {carData.description && (
             <div className="description">
               <h2>Açıklama</h2>
               <p>{carData.description}</p>
             </div>
+            
+            
           )}
+
+         
         </div>
       </div>
     </div>
   );
 }
 
-export default AracDetay; 
+export default AracDetay;

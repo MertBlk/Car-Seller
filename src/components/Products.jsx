@@ -16,18 +16,28 @@ function Products() {
       image: "https://i0.shbdn.com/photos/88/53/34/x5_1171885334mo5.jpg",
       image2: "https://i0.shbdn.com/photos/88/53/34/x5_11718853341ye.jpg",
       image3: "https://i0.shbdn.com/photos/88/53/34/x5_11718853341cc.jpg",
+      description: "Araç açıklaması burada yer alacak",
+      damage: "5.000 TL ",
+      transmission: "Otomatik",
+      color: "Siyah",
+      listingDate: "2025-01-16"
     },
     {
       id: 2,
       brand: "Volkswagen",
       model: "Golf",
-      year: 2022,
+      year: 2012,
+      transmission: "Manuel",
+      color:"Lacivert",
       fuel: "Dizel",
       km: 15000,
       price: 3500000,
       image: "https://i0.shbdn.com/photos/29/12/63/x5_12182912634d1.jpg",
       image2: "https://i0.shbdn.com/photos/29/12/63/x5_12182912634xi.jpg",
       image3: "https://i0.shbdn.com/photos/29/12/63/x5_1218291263pvr.jpg",
+      description: "Araç açıklaması burada yer alacak",
+      damage: "25.000 TL ",
+      listingDate: "2025-01-16"
     },
     {
       id: 3,
@@ -35,25 +45,33 @@ function Products() {
       model: "C200",
       year: 2016,
       fuel: "Dizel",
+      transmission: "Otomatik",
+      color:"siyah",
       km: 150000,
       price: 1525000,
       image: "https://i0.shbdn.com/photos/38/92/60/x5_1221389260o71.jpg",
       image2: "https://i0.shbdn.com/photos/38/92/60/x5_1221389260h2z.jpg",
       image3: "https://i0.shbdn.com/photos/38/92/60/x5_12213892607es.jpg",
-      listingDate: "2024-01-16"
+      description: "Araç açıklaması burada yer alacak",
+      damage: "5.000 TL ",
+      listingDate: "2025-01-16"
     },
     {
       id: 4,
       brand: "Mercedes-Benz",
       model: "E200",
       year: 1998,
+      transmission: "Manuel",
+      color:"Beyaz",
       fuel: "Dizel",
       km: 500000,
       price: 675000,
       image: "https://i0.shbdn.com/photos/05/97/84/x5_1215059784nwt.jpg",
       image2: "https://i0.shbdn.com/photos/05/97/84/x5_12150597848e5.jpg",
       image3: "https://i0.shbdn.com/photos/05/97/84/x5_12150597844ll.jpg",
-      listingDate: "2024-01-16"
+      description: "Araç açıklaması burada yer alacak",
+      damage: "15.000 TL ",
+      listingDate: "2025-01-16"
     },
     {
       id: 5,
@@ -61,12 +79,15 @@ function Products() {
       model: "i20N",
       year: 2023,
       fuel: "Benzin",
+      color:"Mavi",
       km: 10000,
       price: 1850000,
       image: "https://i0.shbdn.com/photos/65/03/61/x5_1158650361u3h.jpg",
       image2: "https://i0.shbdn.com/photos/65/03/61/x5_1158650361i14.jpg",
       image3: "https://i0.shbdn.com/photos/65/03/61/x5_1158650361m10.jpg",
-      listingDate: "2024-01-16"
+      description: "Araç açıklaması burada yer alacak",
+      damage: "15.000 TL ",
+      listingDate: "2025-01-16"
     },
     {
       id: 6,
@@ -74,12 +95,15 @@ function Products() {
       model: "M3 Coupe",
       year: 2010,
       fuel: "Benzin",
+      color:"Beyaz",
       km: 120000,
       price: 2850000,
       image: "https://i0.shbdn.com/photos/70/43/97/x5_12167043976be.jpg",
       image2: "https://i0.shbdn.com/photos/70/43/97/x5_1216704397tef.jpg",
       image3: "https://i0.shbdn.com/photos/70/43/97/x5_1216704397138.jpg",
-      listingDate: "2024-01-16"
+      description: "Araç açıklaması burada yer alacak",
+      damage: "15.000 TL ",
+      listingDate: "2025-01-16"
     },
     {
       id: 7,
@@ -87,12 +111,15 @@ function Products() {
       model: "RS6",
       year: 2021,
       fuel: "Dizel",
+      color:"Mavi",
       km: 55000,
       price: 3750000,
       image: "https://i0.shbdn.com/photos/48/04/59/x5_121948045974h.jpg",
       image2: "https://i0.shbdn.com/photos/48/04/59/x5_1219480459iya.jpg",
       image3: "https://i0.shbdn.com/photos/48/04/59/x5_1219480459xkn.jpg",
-      listingDate: "2024-01-16"
+      description: "Araç açıklaması burada yer alacak",
+      damage: "15.000 TL ",
+      listingDate: "2025-01-16"
     },
     {
       id: 8,
@@ -100,12 +127,15 @@ function Products() {
       model: "190E",
       year: 1993,
       fuel: "Benzin&LPG",
+      color:"Siyah",
       km: 555000,
       price: 2750000,
       image: "https://i0.shbdn.com/photos/16/47/24/x5_1222164724hhm.jpg",
       image2: "https://i0.shbdn.com/photos/16/47/24/x5_1222164724ds8.jpg",
       image3: "https://i0.shbdn.com/photos/16/47/24/x5_12221647244lf.jpg",
-      listingDate: "2024-01-16"
+      description: "Araç açıklaması burada yer alacak",
+      listingDate: "2025-01-16",
+      damage: "15.000 TL ",
     },
   ];
 

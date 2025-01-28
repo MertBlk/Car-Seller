@@ -4,7 +4,10 @@ import { FiSearch, FiBell, FiHeart, FiUser, FiMessageCircle } from 'react-icons/
 
 function Head() {
   const location = useLocation();
-  const isDarkText = location.pathname.includes('/arac/') || location.pathname === '/products';
+  const isDarkText = location.pathname.includes('/arac/') || 
+                     location.pathname === '/products' || 
+                     location.pathname === '/account';  
+ 
 
   return (
     <nav className={`navbar ${isDarkText ? 'navbar-dark-text' : ''}`}>
@@ -12,15 +15,18 @@ function Head() {
         {/* Sol Grup */}
         <div className="nav-left">
           <Link to="/" className="logo">
-         
-            <img src="/logo-alfa-white.png" alt="ALFA" className="logo-img" / >
+            <img 
+              src={isDarkText ? "/logo-alfa-white.png" : "/logo-alfa-white.png"} 
+              alt="ALFA" 
+              className="logo-img" 
+            />
           </Link>
           <div className="categories">
-            <Link to="/vasita" className="nav-link">
-              Vasıta <span className="count">(8.745)</span>
+            <Link to="/vasita" className={`nav-link ${isDarkText ? 'dark-text' : ''}`}>
+               <span className="count"></span>
             </Link>
-            <Link to="/otomobil" className="nav-link active">
-              Otomobil <span className="count">(6.234)</span>
+            <Link to="/otomobil" className={`nav-link active ${isDarkText ? 'dark-text' : ''}`}>
+              Otomobil <span className="count">(1245)</span>
             </Link>
           </div>
         </div>
@@ -37,22 +43,19 @@ function Head() {
 
         {/* Sağ Grup */}
         <div className="nav-right">
-          <button className="btn-primary">
-            
-          </button>
           <div className="nav-icons">
-            <Link to="/mesajlar" className="icon-link">
+            <Link to="/mesajlar" className={`icon-link ${isDarkText ? 'dark-text' : ''}`}>
               <FiMessageCircle size={20} />
               <span className="badge">2</span>
             </Link>
-            <Link to="/bildirimler" className="icon-link">
+            <Link to="/bildirimler" className={`icon-link ${isDarkText ? 'dark-text' : ''}`}>
               <FiBell size={20} />
               <span className="badge">5</span>
             </Link>
-            <Link to="/favoriler" className="icon-link">
+            <Link to="/favoriler" className={`icon-link ${isDarkText ? 'dark-text' : ''}`}>
               <FiHeart size={20} />
             </Link>
-            <Link to="/hesabim" className="icon-link">
+            <Link to="/account" className={`icon-link ${isDarkText ? 'dark-text' : ''}`}>
               <FiUser size={20} />
             </Link>
           </div>
