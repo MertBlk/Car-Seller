@@ -26,7 +26,7 @@ function Head() {
                <span className="count"></span>
             </Link>
             <Link to="/otomobil" className={`nav-link active ${isDarkText ? 'dark-text' : ''}`}>
-              Otomobil <span className="count">(1245)</span>
+               <span className="count"></span>
             </Link>
           </div>
         </div>

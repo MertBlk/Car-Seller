@@ -95,7 +95,7 @@ function AracDetay() {
               <span className="label">Renk:</span>
               <span className="value">{carData.color}</span>
             </div>
-            <div className="spec-item">
+            <div className="spec-item" id="hasar">
               <span className="label">Hasar:</span>
               <span className="value">{carData.damage}</span>
             </div>

@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Head from "./Navbar";
 import Main from "./Main";
 import Products from "./Products";
@@ -16,8 +17,10 @@ function App() {
           <Route path="/arac/:id" element={<AracDetay />} />
           <Route path="/account" element={<Account />} />
         </Routes>
+        
       </div>
     </BrowserRouter>
+    
   );
 }
 

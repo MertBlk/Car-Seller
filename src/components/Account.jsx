@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaUser } from 'react-icons/fa';
 
-
 function Account() {
+  const [userData] = useState({
+    name: "Mert",
+    email: "kullanici@mail.com",
+    phone: "+90 555 555 55 55",
+    listings: [], // İlanlar için boş array
+    favorites: [] // Favoriler için boş array
+  });
+
   return (
     <div className="account-container">
       <div className="account-header">
@@ -16,15 +23,15 @@ function Account() {
           <div className="info-grid">
             <div className="info-item">
               <label>Ad Soyad</label>
-              <p>Kullanıcı Adı</p>
+              <p>{userData.name}</p>
             </div>
             <div className="info-item">
               <label>E-posta</label>
-              <p>kullanici@mail.com</p>
+              <p>{userData.email}</p>
             </div>
             <div className="info-item">
               <label>Telefon</label>
-              <p>+90 555 555 55 55</p>
+              <p>{userData.phone}</p>
             </div>
           </div>
         </div>
@@ -32,14 +39,22 @@ function Account() {
         <div className="account-section">
           <h2>İlanlarım</h2>
           <div className="listings-grid">
-            {/* İlanlar buraya gelecek */}
+            {userData.listings.map((listing, index) => (
+              <div key={index}>
+                {/* İlan detayları */}
+              </div>
+            ))}
           </div>
         </div>
 
         <div className="account-section">
           <h2>Favorilerim</h2>
           <div className="favorites-grid">
-            {/* Favoriler buraya gelecek */}
+            {userData.favorites.map((favorite, index) => (
+              <div key={index}>
+                {/* Favori detayları */}
+              </div>
+            ))}
           </div>
         </div>
       </div>
