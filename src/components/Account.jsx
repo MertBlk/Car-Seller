@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaUser } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 function Account() {
   const [userData] = useState({
@@ -9,6 +10,13 @@ function Account() {
     listings: [], // İlanlar için boş array
     favorites: [] // Favoriler için boş array
   });
+
+  const [favorites, setFavorites] = useState([]);
+
+  useEffect(() => {
+    const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    setFavorites(storedFavorites);
+  }, []);
 
   return (
     <div className="account-container">
@@ -50,10 +58,15 @@ function Account() {
         <div className="account-section">
           <h2>Favorilerim</h2>
           <div className="favorites-grid">
-            {userData.favorites.map((favorite, index) => (
-              <div key={index}>
-                {/* Favori detayları */}
-              </div>
+            {favorites.map((car) => (
+              <Link to={`/arac/${car.id}`} key={car.id} className="favorite-card">
+                <img src={car.image} alt={`${car.brand} ${car.model}`} />
+                <div className="favorite-info">
+                  <h3>{car.brand} {car.model}</h3>
+                  <p>{car.year} • {car.km}km</p>
+                  <p className="price">{car.price} TL</p>
+                </div>
+              </Link>
             ))}
           </div>
         </div>

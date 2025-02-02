@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { FiHeart, FiShare2, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { FiStar, FiShare2, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { Link, useNavigate } from 'react-router-dom';
 
 function ProductCard({ car }) {
   const [currentImage, setCurrentImage] = useState(0);
+  const [isFavorite, setIsFavorite] = useState(false);
   const navigate = useNavigate();
 
   // Tüm resimleri bir dizide topla ve boş olanları filtrele
@@ -40,12 +41,28 @@ function ProductCard({ car }) {
     navigate(`/arac/${car.id}?data=${encodeURIComponent(JSON.stringify(carData))}`);
   };
 
+  const handleFavoriteClick = (e) => {
+    e.stopPropagation(); // Card click event'ini engelle
+    setIsFavorite(!isFavorite);
+    // Favori işlemleri buraya eklenecek
+  };
+
   return (
     <div 
       className="Car" 
       onClick={handleCardClick} // Card'a tıklanınca yönlendirme
     >
       <div className="image-container">
+        <button 
+          className={`favorite-btn ${isFavorite ? 'active' : ''}`}
+          onClick={handleFavoriteClick}
+        >
+          <FiStar 
+            size={20} 
+            className={isFavorite ? 'filled' : ''}
+          />
+        </button>
+
         {images.length > 1 && (
           <button className="slider-btn left" onClick={prevImage}>
             <FiChevronLeft />
@@ -70,9 +87,9 @@ function ProductCard({ car }) {
         <div className="car-price">{car.price.toLocaleString('tr-TR')} TL</div>
         <div className="car-specs">
           <span>{car.year}</span>
-          <span>•</span>
+          <span>-</span>
           <span>{car.fuel}</span>
-          <span>•</span>
+          <span>-</span>
           <span>{car.km.toLocaleString('tr-TR')} KM</span>
         </div>
         

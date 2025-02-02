@@ -1,12 +1,13 @@
 import { useLocation } from "react-router-dom";
-import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
-import { useState } from "react";
+import { FiChevronLeft, FiChevronRight, FiStar } from "react-icons/fi";
+import { useState, useEffect } from "react";
 
 function AracDetay() {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const carData = params.get('data') ? JSON.parse(decodeURIComponent(params.get('data'))) : null;
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   if (!carData) {
     return (
@@ -31,6 +32,17 @@ function AracDetay() {
       prev === 0 ? images.length - 1 : prev - 1
     );
   };
+
+  // Sayfa yüklendiğinde favori durumunu kontrol et
+  useEffect(() => {
+    if (carData) {
+      const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+      setIsFavorite(favorites.some(fav => fav.id === carData.id));
+    }
+  }, [carData]);
+
+  // Favori butonuna tıklandığında
+  
 
   return (
     <div className="white-background">
@@ -69,7 +81,11 @@ function AracDetay() {
         </div>
 
         <div className="car-info">
-          <h1>{carData.brand} {carData.model}</h1>
+          <div className="header-container">
+            <h1>{carData.brand} {carData.model}</h1>
+            
+            
+          </div>
           <div className="price">{carData.price} TL</div>
           
           

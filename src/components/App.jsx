@@ -5,6 +5,7 @@ import Main from "./Main";
 import Products from "./Products";
 import AracDetay from "./CarDetailScreen";
 import Account from "./Account";
+import AddListing from "./AddListing";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/arac/:id" element={<AracDetay />} />
           <Route path="/account" element={<Account />} />
+          <Route path="/ilanver" element={<AddListing />} />
         </Routes>
         
       </div>

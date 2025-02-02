@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { FiSearch, FiBell, FiHeart, FiUser, FiMessageCircle } from 'react-icons/fi';
+import { FiSearch, FiBell, FiHeart, FiUser, FiMessageCircle, FiPlus } from 'react-icons/fi';
 
 function Head() {
   const location = useLocation();
   const isDarkText = location.pathname.includes('/arac/') || 
                      location.pathname === '/products' || 
-                     location.pathname === '/account';  
+                     location.pathname === '/account'  ||
+                     location.pathname === '/ilanver';  
  
 
   return (
@@ -52,8 +53,8 @@ function Head() {
               <FiBell size={20} />
               <span className="badge">5</span>
             </Link>
-            <Link to="/favoriler" className={`icon-link ${isDarkText ? 'dark-text' : ''}`}>
-              <FiHeart size={20} />
+            <Link to="/ilanver" className={`icon-link ${isDarkText ? 'dark-text' : ''}`}>
+              <FiPlus size={20} />
             </Link>
             <Link to="/account" className={`icon-link ${isDarkText ? 'dark-text' : ''}`}>
               <FiUser size={20} />
