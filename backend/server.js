@@ -3,42 +3,82 @@ import cors from 'cors';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import multer from 'multer';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
 
+// Upload klasörü kontrolü
+if (!fs.existsSync('uploads')) {
+  fs.mkdirSync('uploads');
+}
+
+// Multer yapılandırması
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/');
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
+  }
+});
+
+const upload = multer({ 
+  storage: storage,
+  fileFilter: function (req, file, cb) {
+    // Sadece resim dosyalarını kabul et
+    if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
+      return cb(new Error('Sadece resim dosyaları yüklenebilir!'), false);
+    }
+    cb(null, true);
+  }
+});
+
+// CORS ayarları
 app.use(cors({
   origin: 'http://localhost:5173',
   credentials: true,
-  methods: ['GET', 'POST']
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Accept']
 }));
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use('/uploads', express.static('uploads'));
 
-// Test endpoint'i - bağlantıyı kontrol için
+// Test endpoint
 app.get('/test', (req, res) => {
-  console.log('Test isteği alındı');
+  res.setHeader('Content-Type', 'application/json');
   res.json({ message: 'Server çalışıyor' });
 });
 
-app.post('/api/cars', (req, res) => {
+app.post('/api/cars', upload.fields([
+  { name: 'image1', maxCount: 1 },
+  { name: 'image2', maxCount: 1 },
+  { name: 'image3', maxCount: 1 },
+  { name: 'image4', maxCount: 1 },
+  { name: 'image5', maxCount: 1 }
+]), async (req, res) => {
   try {
     const carsPath = path.join(__dirname, '../src/data/cars.json');
-    console.log('Cars.json yolu:', carsPath);
-    
     const carsData = JSON.parse(fs.readFileSync(carsPath));
-    const newCar = req.body;
     
+    const newCar = {
+      id: Date.now(),
+      ...req.body,
+      features: JSON.parse(req.body.features || '[]'),
+      images: Object.values(req.files || {}).map(file => file[0].path)
+    };
+
     carsData.cars.push(newCar);
     fs.writeFileSync(carsPath, JSON.stringify(carsData, null, 2));
-    
-    console.log('Yeni araç eklendi:', newCar);
-    res.json({ success: true });
+
+    res.json({ success: true, data: newCar });
   } catch (error) {
-    console.error('Hata:', error);
-    res.status(500).json({ error: 'Araç eklenirken hata oluştu' });
+    res.status(500).json({ success: false, message: error.message });
   }
 });
 

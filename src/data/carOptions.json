@@ -1,0 +1,215 @@
+{
+  "carFeatures": {
+    "safety": [
+      "ABS",
+      "ESP",
+      "ASR",
+      "EDL",
+      "Hava Yastığı",
+      "Yokuş Kalkış Desteği",
+      "Şerit Takip",
+      "Kör Nokta",
+      "Geri Görüş Kamerası"
+    ],
+    "comfort": [
+      "Klima",
+      "Dijital Klima",
+      "Start/Stop",
+      "Hız Sabitleyici",
+      "Yağmur Sensörü",
+      "Far Sensörü",
+      "Park Sensörü"
+    ],
+    "interior": [
+      "Deri Döşeme",
+      "Isıtmalı Koltuk",
+      "Elektrikli Koltuk",
+      "Hafızalı Koltuk",
+      "Sunroof",
+      "Panoramik Cam Tavan"
+    ],
+    "multimedia": [
+      "Bluetooth",
+      "Apple CarPlay",
+      "Android Auto",
+      "Navigasyon",
+      "USB"
+    ]
+  },
+  "bodyTypes": [
+    "Sedan",
+    "Hatchback",
+    "Station Wagon",
+    "SUV",
+    "Crossover",
+    "Coupe",
+    "Cabrio",
+    "MPV",
+    "Pickup"
+  ],
+  "tractionTypes": [
+    "Önden Çekiş",
+    "Arkadan İtiş",
+    "4x4"
+  ],
+  "fuelTypes": [
+    "Benzin",
+    "Dizel",
+    "Benzin&LPG",
+    "Elektrik",
+    "Hibrit"
+  ],
+  "transmissionTypes": [
+    "Manuel",
+    "Otomatik",
+    "Yarı Otomatik"
+  ],
+  "colors": [
+    "Beyaz",
+    "Siyah",
+    "Gri",
+    "Kırmızı",
+    "Mavi",
+    "Yeşil",
+    "Sarı",
+    "Kahverengi",
+    "Lacivert",
+    "Bordo",
+    "Gümüş",
+    "Diğer"
+  ],
+  "conditions": [
+    {
+      "value": "new",
+      "label": "Sıfır"
+    },
+    {
+      "value": "used",
+      "label": "İkinci El"
+    }
+  ],
+  "carSeries": {
+    "Alfa Romeo": {
+      "Giulia": ["2.0T", "Quadrifoglio"],
+      "Stelvio": ["2.0T", "Quadrifoglio"],
+      "Giulietta": ["1.4T", "1.6 JTD", "2.0 JTD"]
+    },
+    "Audi": {
+      "A3": ["1.0 TFSI", "1.5 TFSI", "2.0 TDI", "2.0 TFSI", "S3", "RS3"],
+      "A4": ["2.0 TDI", "2.0 TFSI", "3.0 TDI", "S4", "RS4"]
+    },
+    "BMW": {
+      "1 Serisi": ["116i", "118i", "120i", "116d", "118d", "120d", "M135i"],
+      "2 Serisi": ["218i", "220i", "218d", "220d", "M240i"],
+      "3 Serisi": ["316i", "318i", "320i", "330i", "316d", "318d", "320d", "330d", "M3"],
+      "4 Serisi": ["420i", "430i", "420d", "430d", "M4"],
+      "5 Serisi": ["520i", "530i", "520d", "530d", "M5"],
+      "X1": ["sDrive18i", "xDrive20i", "sDrive18d", "xDrive20d"],
+      "X3": ["xDrive20i", "xDrive30i", "xDrive20d", "xDrive30d", "M40i"],
+      "X5": ["xDrive30i", "xDrive40i", "xDrive30d", "M50i"]
+    },
+    "Citroen": {
+      "C3": ["1.2 PureTech", "1.5 BlueHDi"],
+      "C4": ["1.2 PureTech", "1.5 BlueHDi"],
+      "C5": ["1.6 THP", "2.0 HDi"]
+    },
+    "Dacia": {
+      "Duster": ["1.0 TCe", "1.3 TCe", "1.5 Blue dCi"],
+      "Sandero": ["1.0 SCe", "1.0 TCe", "1.5 Blue dCi"],
+      "Logan": ["1.0 SCe", "1.0 TCe", "1.5 Blue dCi"]
+    },
+    "Fiat": {
+      "Egea": ["1.3 Multijet", "1.6 Multijet", "1.4 Fire", "1.3 FireFly"],
+      "500": ["1.0 Hybrid", "1.2 Fire"],
+      "Doblo": ["1.3 Multijet", "1.6 Multijet", "1.4 Fire"]
+    },
+    "Ford": {
+      "Focus": ["1.0 EcoBoost", "1.5 EcoBoost", "1.5 EcoBlue", "2.3 EcoBoost ST"],
+      "Fiesta": ["1.0 EcoBoost", "1.1 Ti-VCT", "1.5 TDCi", "ST"],
+      "Kuga": ["1.5 EcoBoost", "2.0 EcoBlue", "2.5 PHEV"],
+      "Mondeo": ["1.5 EcoBoost", "2.0 EcoBlue", "2.0 Hybrid"]
+    },
+    "Honda": {
+      "Civic": ["1.0 VTEC", "1.5 VTEC", "2.0 Type R"],
+      "CR-V": ["1.5 VTEC", "2.0 i-MMD Hybrid"],
+      "Jazz": ["1.3 i-VTEC", "1.5 i-VTEC", "e:HEV"]
+    },
+    "Hyundai": {
+      "i10": ["1.0 MPI", "1.2 MPI"],
+      "i20": ["1.0 T-GDI", "1.4 MPI", "1.6 T-GDI N"],
+      "Tucson": ["1.6 T-GDI", "1.6 CRDi", "1.6 T-GDI Hybrid"],
+      "Santa Fe": ["2.2 CRDi", "1.6 T-GDI Hybrid"]
+    },
+    "Kia": {
+      "Picanto": ["1.0 MPI", "1.2 MPI"],
+      "Rio": ["1.0 T-GDI", "1.2 MPI", "1.4 MPI"],
+      "Sportage": ["1.6 T-GDI", "1.6 CRDi", "1.6 T-GDI Hybrid"],
+      "Sorento": ["2.2 CRDi", "1.6 T-GDI Hybrid"]
+    },
+    "Mercedes": {
+      "A Serisi": ["A180", "A200", "A220", "A250", "AMG A35", "AMG A45"],
+      "B Serisi": ["B180", "B200", "B220"],
+      "C Serisi": ["C180", "C200", "C300", "C220d", "AMG C43", "AMG C63"],
+      "E Serisi": ["E200", "E220d", "E300", "E350", "AMG E53", "AMG E63"],
+      "GLA": ["GLA200", "GLA250", "AMG GLA35", "AMG GLA45"],
+      "GLC": ["GLC200", "GLC300", "AMG GLC43", "AMG GLC63"]
+    },
+    "Nissan": {
+      "Micra": ["1.0 IG-T", "1.0 DIG-T"],
+      "Qashqai": ["1.3 DIG-T", "1.5 dCi"],
+      "Juke": ["1.0 DIG-T", "1.6 DIG-T"],
+      "X-Trail": ["1.7 dCi", "1.3 DIG-T"]
+    },
+    "Opel": {
+      "Corsa": ["1.2", "1.2 Turbo", "1.5 CDTI"],
+      "Astra": ["1.2 Turbo", "1.4 Turbo", "1.5 CDTI"],
+      "Insignia": ["1.5 Turbo", "2.0 CDTI", "2.0 Turbo"],
+      "Mokka": ["1.2 Turbo", "1.5 CDTI", "Elektrik"]
+    },
+    "Peugeot": {
+      "208": ["1.2 PureTech", "1.5 BlueHDi", "e-208"],
+      "2008": ["1.2 PureTech", "1.5 BlueHDi", "e-2008"],
+      "3008": ["1.2 PureTech", "1.5 BlueHDi", "1.6 Hybrid"],
+      "508": ["1.6 PureTech", "1.5 BlueHDi", "1.6 Hybrid"]
+    },
+    "Renault": {
+      "Clio": ["1.0 TCe", "1.3 TCe", "1.5 Blue dCi", "E-TECH"],
+      "Megane": ["1.3 TCe", "1.5 Blue dCi", "E-TECH"],
+      "Captur": ["1.0 TCe", "1.3 TCe", "1.5 Blue dCi", "E-TECH"],
+      "Kadjar": ["1.3 TCe", "1.5 Blue dCi"]
+    },
+    "Seat": {
+      "Ibiza": ["1.0 EcoTSI", "1.5 TSI", "1.6 TDI"],
+      "Leon": ["1.0 TSI", "1.5 TSI", "2.0 TDI", "Cupra"],
+      "Ateca": ["1.5 TSI", "2.0 TDI", "2.0 TSI Cupra"],
+      "Arona": ["1.0 TSI", "1.5 TSI", "1.6 TDI"]
+    },
+    "Skoda": {
+      "Fabia": ["1.0 MPI", "1.0 TSI", "1.5 TSI"],
+      "Octavia": ["1.0 TSI", "1.5 TSI", "2.0 TDI", "RS"],
+      "Superb": ["1.5 TSI", "2.0 TSI", "2.0 TDI"],
+      "Kodiaq": ["1.5 TSI", "2.0 TSI", "2.0 TDI", "RS"]
+    },
+    "Toyota": {
+      "Corolla": ["1.5", "1.8 Hybrid", "2.0 Hybrid"],
+      "Yaris": ["1.0", "1.5 Hybrid"],
+      "C-HR": ["1.8 Hybrid", "2.0 Hybrid"],
+      "RAV4": ["2.0", "2.5 Hybrid"]
+    },
+    "Volkswagen": {
+      "Polo": ["1.0", "1.0 TSI", "2.0 GTI"],
+      "Golf": ["1.0 TSI", "1.5 TSI", "2.0 TDI", "GTI", "R"],
+      "Passat": ["1.5 TSI", "2.0 TDI", "2.0 TSI"],
+      "Tiguan": ["1.5 TSI", "2.0 TDI", "2.0 TSI"],
+      "T-Roc": ["1.0 TSI", "1.5 TSI", "2.0 TDI", "R"]
+    },
+    "Volvo": {
+      "S60": ["T4", "T5", "T6", "T8"],
+      "S90": ["T5", "T6", "T8"],
+      "XC40": ["T2", "T3", "T4", "T5", "P8"],
+      "XC60": ["T4", "T5", "T6", "T8"],
+      "XC90": ["T5", "T6", "T8"]
+    }
+  }
+}
+  

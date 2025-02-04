@@ -47,11 +47,11 @@ function Head() {
           <div className="nav-icons">
             <Link to="/mesajlar" className={`icon-link ${isDarkText ? 'dark-text' : ''}`}>
               <FiMessageCircle size={20} />
-              <span className="badge">2</span>
+              <span className="badge"></span>
             </Link>
             <Link to="/bildirimler" className={`icon-link ${isDarkText ? 'dark-text' : ''}`}>
               <FiBell size={20} />
-              <span className="badge">5</span>
+              <span className="badge"></span>
             </Link>
             <Link to="/ilanver" className={`icon-link ${isDarkText ? 'dark-text' : ''}`}>
               <FiPlus size={20} />

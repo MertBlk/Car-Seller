@@ -1,64 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import { Form } from 'react-bootstrap';
 import ProductCard from './Card';
+import carOptions from '../data/carOptions.json';
 
+function Filters({ selectedBrands, setSelectedBrands, selectedFuels, setSelectedFuels, ...props }) {
+  const [expandedBrand, setExpandedBrand] = useState(null);
 
-function Filters({ 
-  selectedBrands, 
-  setSelectedBrands,
-  selectedFuels,
-  setSelectedFuels,
-  priceRange,
-  setPriceRange,
-  yearRange,
-  setYearRange,
-  onFilterChange 
-}) {
-  // Sabit veriler
-  const brands = [
-    { name: 'Alfa Romeo', count: 145, models: ['Giulia (85)', 'Stelvio (60)'] },
-    { name: 'BMW', count: 1234, models: ['3 Serisi (420)', '5 Serisi (380)'] },
-    { name: 'Mercedes-Benz', count: 2156, models: ['C Serisi (645)', 'E Serisi (534)'] },
-    { name: 'Volkswagen', count: 1890, models: ['Golf (320)', 'Passat (280)'] },
-    { name: 'Audi', count: 1567, models: ['A3 (220)', 'A4 (180)'] },
-    { name: 'Hyundai', count: 1567, models: ['I20N (220)'] }
-  ];
+  const brands = Object.keys(carOptions.carSeries).map(brand => ({
+    name: brand,
+    series: Object.keys(carOptions.carSeries[brand])
+  }));
 
-  const fuels = [
-    { name: 'Benzin', count: 3245 },
-    { name: 'Dizel', count: 2876 },
-    { name: 'Hybrid', count: 534 },
-    { name: 'Elektrik', count: 234 },
-    { name: 'Benzin&LPG', count: 456 }
-  ];
+  const fuels = carOptions.fuelTypes.map(fuel => ({
+    name: fuel,
+    count: Math.floor(Math.random() * 1000) + 100 // Örnek sayı
+  }));
 
   // Olay işleyicileri
   const handleBrandSelect = (brandName) => {
-    const lowerBrandName = brandName.toLowerCase();
-    if (selectedBrands.includes(lowerBrandName)) {
-      setSelectedBrands(selectedBrands.filter(b => b !== lowerBrandName));
+    if (expandedBrand === brandName) {
+      setExpandedBrand(null);
     } else {
-      setSelectedBrands([...selectedBrands, lowerBrandName]);
+      setExpandedBrand(brandName);
     }
-    onFilterChange();
-  };
-
-  const handleModelSelect = (modelName) => {
-    if (selectedModels.includes(modelName)) {
-      setSelectedModels(selectedModels.filter(m => m !== modelName));
+    
+    if (selectedBrands.includes(brandName.toLowerCase())) {
+      setSelectedBrands(selectedBrands.filter(b => b !== brandName.toLowerCase()));
     } else {
-      setSelectedModels([...selectedModels, modelName]);
+      setSelectedBrands([...selectedBrands, brandName.toLowerCase()]);
     }
-    onFilterChange();
-  };
-
-  const handleFuelSelect = (fuelType) => {
-    if (selectedFuels.includes(fuelType.toLowerCase())) {
-      setSelectedFuels(selectedFuels.filter(f => f !== fuelType.toLowerCase()));
-    } else {
-      setSelectedFuels([...selectedFuels, fuelType.toLowerCase()]);
-    }
-    onFilterChange();
   };
 
   return (
@@ -78,18 +48,31 @@ function Filters({
         </div>
       </div>
 
-      {/* Marka/Model */}
+      {/* Marka/Seri */}
       <div className="filter-section">
-        <div className="filter-header">Marka</div>
+        <div className="filter-header">Marka/Seri</div>
         <div className="filter-content">
-          {brands.map((brand, index) => (
-            <div 
-              key={index} 
-              className={`filter-item ${selectedBrands.includes(brand.name.toLowerCase()) ? 'active' : ''}`}
-              onClick={() => handleBrandSelect(brand.name)}
-            >
-              <span className="category-name">{brand.name}</span>
-              <span className="count">({brand.count})</span>
+          {brands.map((brand) => (
+            <div key={brand.name} className="brand-section">
+              <div 
+                className={`filter-item ${selectedBrands.includes(brand.name.toLowerCase()) ? 'active' : ''}`}
+                onClick={() => handleBrandSelect(brand.name)}
+              >
+                <span>{brand.name}</span>
+                <span className="expand-icon">
+                  {expandedBrand === brand.name ? '' : ''}
+                </span>
+              </div>
+              
+              {expandedBrand === brand.name && (
+                <div className="series-list">
+                  {brand.series.map((series) => (
+                    <div key={series} className="series-item">
+                      {series}
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           ))}
         </div>
@@ -103,7 +86,11 @@ function Filters({
             <div 
               key={index}
               className={`filter-item ${selectedFuels.includes(fuel.name.toLowerCase()) ? 'active' : ''}`}
-              onClick={() => handleFuelSelect(fuel.name)}
+              onClick={() => setSelectedFuels(prev => 
+                prev.includes(fuel.name.toLowerCase()) 
+                  ? prev.filter(f => f !== fuel.name.toLowerCase())
+                  : [...prev, fuel.name.toLowerCase()]
+              )}
             >
               {fuel.name} <span className="count">({fuel.count})</span>
             </div>

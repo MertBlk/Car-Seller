@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ProductCard from './Card';
 import Filters from './Filters';
 import carsData from '../data/cars.json';
+import carOptions from '../data/carOptions.json';
 
 function Products() {
   const [allCars] = useState(carsData.cars);
@@ -51,26 +52,26 @@ function Products() {
     applyFilters();
   }, [selectedBrands, selectedFuels, priceRange, yearRange]);
 
+  const filterProps = {
+    selectedBrands,
+    setSelectedBrands,
+    selectedFuels,
+    setSelectedFuels,
+    priceRange,
+    setPriceRange,
+    yearRange,
+    setYearRange,
+    applyFilters
+  };
+
   return (
     <div className="products-container">
+      <Filters {...filterProps} />
       <div className="d-flex">
-        <div className="filters-wrapper">
-          <Filters 
-            selectedBrands={selectedBrands}
-            setSelectedBrands={setSelectedBrands}
-            selectedFuels={selectedFuels}
-            setSelectedFuels={setSelectedFuels}
-            priceRange={priceRange}
-            setPriceRange={setPriceRange}
-            yearRange={yearRange}
-            setYearRange={setYearRange}
-            applyFilters={applyFilters} // Yeni prop
-          />
-        </div>
         <div className="cards-wrapper">
           <div className="cards-grid">
-            {filteredCars.map((car) => (
-              <div key={car.id} className="card-item">
+            {filteredCars.map((car, index) => (
+              <div key={car.id || `car-${index}`}>
                 <ProductCard car={car} />
               </div>
             ))}

@@ -33,12 +33,26 @@ function ProductCard({ car }) {
     price: car.price,
     damage: car.damage || 'Belirtilmemiş', // Varsayılan değer
     images: images, // Filtrelenmiş resim dizisi
-    description: car.description || `${car.brand} ${car.model} ${car.year} model, ${car.fuel} yakıt tipli, ${car.km.toLocaleString('tr-TR')} KM'de.`, // Varsayılan açıklama
+    description: car.description, // Varsayılan açıklama
     listingDate: car.listingDate,
   };
 
   const handleCardClick = () => {
-    navigate(`/arac/${car.id}?data=${encodeURIComponent(JSON.stringify(carData))}`);
+    const completeData = {
+      ...car,
+      series: car.series,
+      lastMaintenance: car.lastMaintenance,
+      ownerCount: car.ownerCount,
+      engineSize: car.engineSize,
+      enginePower: car.enginePower,
+      bodyType: car.bodyType,
+      traction: car.traction,
+      condition: car.condition,
+      features: car.features || [],
+      images: [car.image, car.image2, car.image3].filter(Boolean)
+    };
+    
+    navigate(`/arac/${car.id}?data=${encodeURIComponent(JSON.stringify(completeData))}`);
   };
 
   const handleFavoriteClick = (e) => {
@@ -84,13 +98,13 @@ function ProductCard({ car }) {
 
       <div className="car-info">
         <h3 className="car-title">{car.brand} {car.model}</h3>
-        <div className="car-price">{car.price.toLocaleString('tr-TR')} TL</div>
+        <div className="car-price">{car.price} TL</div>
         <div className="car-specs">
           <span>{car.year}</span>
           <span>-</span>
           <span>{car.fuel}</span>
           <span>-</span>
-          <span>{car.km.toLocaleString('tr-TR')} KM</span>
+          <span>{car.km} KM</span>
         </div>
         
       </div>
