@@ -6,7 +6,6 @@ function AddListing() {
   const navigate = useNavigate();
   
   // State tanımlamaları
-  const [selectedFeatures, setSelectedFeatures] = useState([]);
   const [formData, setFormData] = useState({
     brand: '',
     model: '',
@@ -27,7 +26,6 @@ function AddListing() {
     traction: '',
     condition: 'used',
     features: [],
-    lastMaintenance: '',
     images: []
   });
 
@@ -51,85 +49,79 @@ function AddListing() {
     carSeries: {}
   });
 
-  useEffect(() => {
+ useEffect(() => {
     const loadCarOptions = async () => {
       try {
         const response = await import('../data/carOptions.json');
         setCarOptions(response.default);
       } catch (error) {
-        console.error('Araç seçenekleri yüklenemedi:', error);
+        console.error('Error loading car options:', error);
       }
     };
 
     loadCarOptions();
   }, []);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitError(null);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    // Basic validation before sending the data
+    if (!formData.brand || !formData.model || !formData.year || !formData.price) {
+      setErrors(prev => ({
+        ...prev,
+        form: 'Marka, model, yıl ve fiyat bilgileri zorunludur.'
+      }));
+      return;
+    }
+
+    const formDataToSend = new FormData();
+    formData.images.forEach(image => {
+      formDataToSend.append('images', image);  // Add multiple images to FormData
+    });
+    
+    Object.keys(formData).forEach(key => {
+      if (key !== 'images') {
+        formDataToSend.append(key, formData[key]);
+      }
+    });
 
     try {
-      const formDataToSend = new FormData();
-      const newCar = {
-        ...formData,
-        features: selectedFeatures,
-        listingDate: new Date().toISOString().split('T')[0]
-      };
-
-      // Form verilerini ekle
-      Object.keys(newCar).forEach(key => {
-        if (key === 'features') {
-          formDataToSend.append(key, JSON.stringify(selectedFeatures));
-        } else if (key !== 'images') {
-          formDataToSend.append(key, 
-            typeof newCar[key] === 'object' 
-              ? JSON.stringify(newCar[key]) 
-              : newCar[key]
-          );
-        }
-      });
-
-      // Resimleri ekle
-      formData.images.forEach((image, index) => {
-        formDataToSend.append(`image${index + 1}`, image);
-      });
-
+      setIsSubmitting(true);
       const response = await fetch('http://localhost:3001/api/cars', {
         method: 'POST',
-        body: formDataToSend
+        body: formDataToSend,
       });
 
-      if (!response.ok) {
-        const errorText = await response.text();
-        console.error('Server yanıtı:', errorText);
-        throw new Error('İlan eklenirken bir hata oluştu');
-      }
+      const data = await response.json();
+      console.log(data);
 
-      const responseData = await response.json();
-      navigate('/products');
+      // On success, redirect or reset form
+      if (response.ok) {
+        navigate('/products'); // Example: navigate to another page
+      } else {
+        setSubmitError('İlan yükleme hatası, lütfen tekrar deneyin.');
+      }
     } catch (error) {
-      console.error('Hata:', error);
-      setSubmitError(error.message);
+      console.error('Error submitting form:', error);
+      setSubmitError('Bir hata oluştu, lütfen tekrar deneyin.');
     } finally {
       setIsSubmitting(false);
     }
   };
-
+  
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: type === 'checkbox' ? checked : value,
-      // Model ve seri seçimlerini sıfırla
       ...(name === 'brand' ? { model: '', series: '' } : {}),
       ...(name === 'model' ? { series: '' } : {})
     }));
     
     if (!value) {
-      setErrors(prev => ({...prev, [name]: 'Bu alan boş bırakılamaz'}));
+      setErrors(prev => ({ ...prev, [name]: 'Bu alan boş bırakılamaz' }));
     } else {
-      setErrors(prev => ({...prev, [name]: ''}));
+      setErrors(prev => ({ ...prev, [name]: '' }));
     }
   };
 
@@ -144,13 +136,13 @@ function AddListing() {
 
   const handleImageUpload = (e) => {
     const files = Array.from(e.target.files);
+    const selectedFiles = files.slice(0, 15);
     setFormData(prev => ({
       ...prev,
-      images: [...prev.images, ...files]
+      images: [...prev.images, ...selectedFiles]
     }));
   };
 
-  // Veriler yüklenene kadar loading göster
   if (!carOptions) {
     return <div>Yükleniyor...</div>;
   }
@@ -160,6 +152,7 @@ function AddListing() {
       <h1>İlan Ver</h1>
       <form onSubmit={handleSubmit}>
         <div className="form-grid">
+          {/* Marka Seçimi */}
           <div className="form-group">
             <label>Marka</label>
             <select
@@ -169,12 +162,14 @@ function AddListing() {
               required
             >
               <option value="">Seçiniz</option>
-              {carOptions?.carSeries && Object.keys(carOptions.carSeries).map(brand => (
-                <option key={brand} value={brand}>{brand}</option>
-              ))}
+              {carOptions?.carSeries &&
+                Object.keys(carOptions.carSeries).map(brand => (
+                  <option key={brand} value={brand}>{brand}</option>
+                ))}
             </select>
           </div>
           
+          {/* Model Seçimi */}
           <div className="form-group">
             <label>Model</label>
             <select
@@ -192,6 +187,7 @@ function AddListing() {
             </select>
           </div>
 
+          {/* Seri Seçimi */}
           <div className="form-group">
             <label>Seri</label>
             <select
@@ -209,6 +205,7 @@ function AddListing() {
             </select>
           </div>
 
+          {/* Yıl */}
           <div className="form-group">
             <label>Yıl</label>
             <input
@@ -220,6 +217,8 @@ function AddListing() {
             />
             {errors.year && <div className="error-message">{errors.year}</div>}
           </div>
+
+          {/* Vites */}
           <div className="form-group">
             <label>Vites</label>
             <select
@@ -228,14 +227,15 @@ function AddListing() {
               onChange={handleChange}
               className={errors.transmission ? 'error' : ''}
             > 
-            <option value="">Seçiniz</option>
-            <option value="Manuel">Manuel</option>
-            <option value="Otomatik">Otomatik</option>
-            <option value="Yarı Otomatik">Yarı Otomatik</option>
+              <option value="">Seçiniz</option>
+              <option value="Manuel">Manuel</option>
+              <option value="Otomatik">Otomatik</option>
+              <option value="Yarı Otomatik">Yarı Otomatik</option>
             </select>
             {errors.transmission && <div className="error-message">{errors.transmission}</div>}
-            </div>
+          </div>
 
+          {/* Yakıt */}
           <div className="form-group">
             <label>Yakıt</label>
             <select
@@ -252,7 +252,7 @@ function AddListing() {
             {errors.fuel && <div className="error-message">{errors.fuel}</div>}
           </div>
           
-
+          {/* KM */}
           <div className="form-group">
             <label>KM</label>
             <input
@@ -265,6 +265,7 @@ function AddListing() {
             {errors.km && <div className="error-message">{errors.km}</div>}
           </div>
 
+          {/* Fiyat */}
           <div className="form-group">
             <label>Fiyat</label>
             <input
@@ -277,6 +278,7 @@ function AddListing() {
             {errors.price && <div className="error-message">{errors.price}</div>}
           </div>
 
+          {/* Renk */}
           <div className="form-group">
             <label>Renk</label>
             <select
@@ -297,6 +299,7 @@ function AddListing() {
             {errors.color && <div className="error-message">{errors.color}</div>}
           </div>
 
+          {/* Hasar Kaydı */}
           <div className="form-group">
             <label>Hasar Kaydı</label>
             <select
@@ -314,6 +317,7 @@ function AddListing() {
             {errors.damage && <div className="error-message">{errors.damage}</div>}
           </div>
 
+          {/* Motor Hacmi */}
           <div className="form-group">
             <label>Motor Hacmi (cc)</label>
             <input
@@ -325,6 +329,7 @@ function AddListing() {
             />
           </div>
 
+          {/* Motor Gücü */}
           <div className="form-group">
             <label>Motor Gücü (HP)</label>
             <input
@@ -336,6 +341,7 @@ function AddListing() {
             />
           </div>
 
+          {/* Kasa Tipi */}
           <div className="form-group">
             <label>Kasa Tipi</label>
             <select
@@ -351,6 +357,7 @@ function AddListing() {
             </select>
           </div>
 
+          {/* Çekiş */}
           <div className="form-group">
             <label>Çekiş</label>
             <select
@@ -366,6 +373,7 @@ function AddListing() {
             </select>
           </div>
 
+          {/* Araç Durumu */}
           <div className="form-group">
             <label>Araç Durumu</label>
             <select
@@ -379,6 +387,7 @@ function AddListing() {
             </select>
           </div>
 
+          {/* Takas */}
           <div className="form-group">
             <label>Takas</label>
             <select
@@ -393,18 +402,9 @@ function AddListing() {
             </select>
             {errors.exchange && <div className="error-message">{errors.exchange}</div>}
           </div>
-
-          <div className="form-group">
-            <label>Son Bakım Tarihi</label>
-            <input
-              type="date"
-              name="lastMaintenance"
-              value={formData.lastMaintenance}
-              onChange={handleChange}
-            />
-          </div>
         </div>
 
+        {/* Araç Özellikleri */}
         <div className="form-group full-width">
           <label>Araç Özellikleri</label>
           <div className="features-grid">
@@ -427,7 +427,7 @@ function AddListing() {
           </div>
         </div>
 
-
+        {/* Resim Yükleme */}
         <div className="form-group image-upload">
           <label>
             <FiUpload className="upload-icon" />
@@ -442,23 +442,28 @@ function AddListing() {
           </label>
           
           <div className="image-preview">
-            {Array.isArray(formData.images) && formData.images.map((image, index) => (
-              <div key={index} className="preview-item">
-                <img src={URL.createObjectURL(image)} alt={`Preview ${index + 1}`} />
-                <button
-                  type="button"
-                  className="delete-btn"
-                  onClick={() => {
-                    setFormData(prev => ({
-                      ...prev,
-                      images: prev.images.filter((_, i) => i !== index)
-                    }));
-                  }}
-                >
-                  ✕
-                </button>
-              </div>
-            ))}
+            {formData.images.length > 0 &&
+              formData.images.map((file, index) => (
+                <div key={index} className="preview-item">
+                  <img 
+                    src={URL.createObjectURL(file)} 
+                    alt={`Preview ${index + 1}`} 
+                  />
+                  <button
+                    type="button"
+                    className="delete-btn"
+                    onClick={() => {
+                      setFormData(prev => {
+                        const newImages = prev.images.filter((_, i) => i !== index);
+                        return { ...prev, images: newImages };
+                      });
+                    }}
+                  >
+                    ✕
+                  </button>
+                </div>
+              ))
+            }
           </div>
         </div>
 

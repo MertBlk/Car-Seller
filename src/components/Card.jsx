@@ -1,14 +1,17 @@
-import { useState } from 'react';
-import { FiStar, FiShare2, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import { FiStar, FiShare2, FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 
 function ProductCard({ car }) {
-  const [currentImage, setCurrentImage] = useState(0);
-  const [isFavorite, setIsFavorite] = useState(false);
   const navigate = useNavigate();
+  const [isFavorite, setIsFavorite] = useState(false);
 
-  // Tüm resimleri bir dizide topla ve boş olanları filtrele
-  const images = [car.image, car.image2, car.image3].filter(Boolean);
+  // Tüm resimleri car.images ve car.image1, car.image2 gibi alanlardan topla
+  const images = [...(car.images || []), car.image, car.image1, car.image2, car.image3].filter(Boolean);
+  
+  // Eğer hiç resim yoksa varsayılan bir resim ekle
+  const defaultImage = "https://via.placeholder.com/300x200?text=No+Image";
+  const [currentImage, setCurrentImage] = useState(images.length > 0 ? 0 : null);
 
   const nextImage = (e) => {
     e.stopPropagation();
@@ -20,61 +23,24 @@ function ProductCard({ car }) {
     setCurrentImage((prev) => (prev === 0 ? images.length - 1 : prev - 1));
   };
 
-  // Araç verilerini URL'e encode edelim
-  const carData = {
-    id: car.id,
-    brand: car.brand,
-    model: car.model,
-    year: car.year,
-    km: car.km,
-    fuel: car.fuel,
-    transmission: car.transmission || 'Otomatik', // Varsayılan değer
-    color: car.color || 'Belirtilmemiş', // Varsayılan değer
-    price: car.price,
-    damage: car.damage || 'Belirtilmemiş', // Varsayılan değer
-    images: images, // Filtrelenmiş resim dizisi
-    description: car.description, // Varsayılan açıklama
-    listingDate: car.listingDate,
-  };
-
   const handleCardClick = () => {
     const completeData = {
       ...car,
-      series: car.series,
-      lastMaintenance: car.lastMaintenance,
-      ownerCount: car.ownerCount,
-      engineSize: car.engineSize,
-      enginePower: car.enginePower,
-      bodyType: car.bodyType,
-      traction: car.traction,
-      condition: car.condition,
-      features: car.features || [],
-      images: [car.image, car.image2, car.image3].filter(Boolean)
+      images,
     };
-    
     navigate(`/arac/${car.id}?data=${encodeURIComponent(JSON.stringify(completeData))}`);
   };
 
   const handleFavoriteClick = (e) => {
-    e.stopPropagation(); // Card click event'ini engelle
+    e.stopPropagation();
     setIsFavorite(!isFavorite);
-    // Favori işlemleri buraya eklenecek
   };
 
   return (
-    <div 
-      className="Car" 
-      onClick={handleCardClick} // Card'a tıklanınca yönlendirme
-    >
+    <div className="Car" onClick={handleCardClick}>
       <div className="image-container">
-        <button 
-          className={`favorite-btn ${isFavorite ? 'active' : ''}`}
-          onClick={handleFavoriteClick}
-        >
-          <FiStar 
-            size={20} 
-            className={isFavorite ? 'filled' : ''}
-          />
+        <button className={`favorite-btn ${isFavorite ? "active" : ""}`} onClick={handleFavoriteClick}>
+          <FiStar size={20} className={isFavorite ? "filled" : ""} />
         </button>
 
         {images.length > 1 && (
@@ -82,13 +48,13 @@ function ProductCard({ car }) {
             <FiChevronLeft />
           </button>
         )}
-        
-        <img 
-          src={images[currentImage]} 
-          alt={`${car.brand} ${car.model}`} 
+
+        <img
+          src={currentImage !== null ? images[currentImage] : defaultImage}
+          alt={`${car.brand} ${car.model}`}
           className="car-image"
         />
-        
+
         {images.length > 1 && (
           <button className="slider-btn right" onClick={nextImage}>
             <FiChevronRight />
@@ -97,7 +63,9 @@ function ProductCard({ car }) {
       </div>
 
       <div className="car-info">
-        <h3 className="car-title">{car.brand} {car.model}</h3>
+        <h3 className="car-title">
+          {car.brand} {car.model}
+        </h3>
         <div className="car-price">{car.price} TL</div>
         <div className="car-specs">
           <span>{car.year}</span>
@@ -106,7 +74,6 @@ function ProductCard({ car }) {
           <span>-</span>
           <span>{car.km} KM</span>
         </div>
-        
       </div>
     </div>
   );

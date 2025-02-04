@@ -305,33 +305,7 @@
       "image2": "https://i0.shbdn.com/photos/16/47/24/x5_1222164724ds8.jpg",
       "image3": "https://i0.shbdn.com/photos/16/47/24/x5_12221647244lf.jpg",
       "listingDate": "2024-01-16"
-    },
-    {
-      "id": 1738678845347,
-      "brand": "Audi",
-      "model": "A3",
-      "series": "1.5 TFSI",
-      "year": "2000",
-      "fuel": "Benzin&LPG",
-      "km": "130000",
-      "price": "500000",
-      "color": "Gri",
-      "transmission": "Otomatik",
-      "damage": "Var",
-      "description": "",
-      "engineSize": "1598",
-      "enginePower": "115",
-      "warranty": "false",
-      "exchange": "Var",
-      "bodyType": "Hatchback",
-      "traction": "4x4",
-      "condition": "used",
-      "features": [],
-      "lastMaintenance": "",
-      "listingDate": "2025-02-04",
-      "images": [
-        "uploads\\image1-1738678845334-907023974.png"
-      ]
     }
+    
   ]
 }

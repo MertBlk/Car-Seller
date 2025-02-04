@@ -10,34 +10,33 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 
-// Upload klasörü kontrolü
+// Upload klasörünü oluştur (varsa oluşturmaz)
 if (!fs.existsSync('uploads')) {
   fs.mkdirSync('uploads');
 }
 
-// Multer yapılandırması
+// Multer yapılandırması (çoklu dosya yükleme)
 const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
+  destination: (req, file, cb) => {
     cb(null, 'uploads/');
   },
-  filename: function (req, file, cb) {
+  filename: (req, file, cb) => {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
+    cb(null, `image-${uniqueSuffix}${path.extname(file.originalname)}`);
   }
 });
 
 const upload = multer({ 
   storage: storage,
-  fileFilter: function (req, file, cb) {
-    // Sadece resim dosyalarını kabul et
-    if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
-      return cb(new Error('Sadece resim dosyaları yüklenebilir!'), false);
+  fileFilter: (req, file, cb) => {
+    if (file.mimetype.startsWith('image/')) {
+      cb(null, true);
+    } else {
+      cb(new Error('Sadece resim dosyaları yüklenebilir.'));
     }
-    cb(null, true);
   }
 });
 
-// CORS ayarları
 app.use(cors({
   origin: 'http://localhost:5173',
   credentials: true,
@@ -49,42 +48,67 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/uploads', express.static('uploads'));
 
-// Test endpoint
-app.get('/test', (req, res) => {
-  res.setHeader('Content-Type', 'application/json');
-  res.json({ message: 'Server çalışıyor' });
-});
-
-app.post('/api/cars', upload.fields([
-  { name: 'image1', maxCount: 1 },
-  { name: 'image2', maxCount: 1 },
-  { name: 'image3', maxCount: 1 },
-  { name: 'image4', maxCount: 1 },
-  { name: 'image5', maxCount: 1 }
-]), async (req, res) => {
+// Çoklu resim yükleme endpoint'i
+app.post('/api/cars', upload.array('images', 15), async (req, res) => {
   try {
+    console.log('Form verileri:', req.body);
+    console.log('Yüklenen dosyalar:', req.files);
+
+    if (!req.files || req.files.length === 0) {
+      console.log('Resim yüklenmedi.');
+      return res.status(400).json({ success: false, message: 'Resim yüklenmedi!' });
+    }
+
     const carsPath = path.join(__dirname, '../src/data/cars.json');
-    const carsData = JSON.parse(fs.readFileSync(carsPath));
-    
+
+    let carsData = { cars: [] };
+    if (fs.existsSync(carsPath)) {
+      const fileContent = fs.readFileSync(carsPath, 'utf-8');
+      if (fileContent) {
+        carsData = JSON.parse(fileContent);
+      }
+    }
+
+    let features = [];
+    try {
+      features = JSON.parse(req.body.features || '[]');
+    } catch (err) {
+      console.error('Features JSON parse hatası:', err);
+    }
+
+    // Resimleri sırasıyla "image", "image2", "image3", vb. olarak ayarlıyoruz
+    let imageFields = {};
+    req.files.forEach((file, index) => {
+      imageFields[`image${index + 1}`] = `http://localhost:3001/uploads/${file.filename}`;
+    });
+
     const newCar = {
       id: Date.now(),
       ...req.body,
-      features: JSON.parse(req.body.features || '[]'),
-      images: Object.values(req.files || {}).map(file => file[0].path)
+      features,
+      listingDate: new Date().toISOString().split('T')[0],
+      ...imageFields // Resim alanları burada ekleniyor
     };
 
     carsData.cars.push(newCar);
     fs.writeFileSync(carsPath, JSON.stringify(carsData, null, 2));
 
+    console.log('Yeni araç eklendi:', newCar);
     res.json({ success: true, data: newCar });
+
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message });
+    console.error('İşlem hatası:', error);
+    res.status(500).json({ 
+      success: false, 
+      message: 'Araç eklenirken hata oluştu', 
+      error: error.message, 
+      stack: error.stack 
+    });
   }
 });
 
-const PORT = 3001;
 
+const PORT = 3001;
 app.listen(PORT, () => {
   console.log(`Server başlatıldı: http://localhost:${PORT}`);
-  console.log('CORS origin:', 'http://localhost:5173');
 });
