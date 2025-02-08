@@ -18,6 +18,8 @@ function App() {
           <Route path="/arac/:id" element={<AracDetay />} />
           <Route path="/account" element={<Account />} />
           <Route path="/ilanver" element={<AddListing />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
         
       </div>

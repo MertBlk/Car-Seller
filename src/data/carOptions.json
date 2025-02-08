@@ -94,90 +94,234 @@
       "Stelvio": ["2.0T", "Quadrifoglio"],
       "Giulietta": ["1.4T", "1.6 JTD", "2.0 JTD"]
     },
-    "Audi": {
-      "A3": ["1.0 TFSI", "1.5 TFSI", "2.0 TDI", "2.0 TFSI", "S3", "RS3"],
-      "A4": ["2.0 TDI", "2.0 TFSI", "3.0 TDI", "S4", "RS4"]
-    },
-    "BMW": {
-      "1 Serisi": ["116i", "118i", "120i", "116d", "118d", "120d", "M135i"],
-      "2 Serisi": ["218i", "220i", "218d", "220d", "M240i"],
-      "3 Serisi": ["316i", "318i", "320i", "330i", "316d", "318d", "320d", "330d", "M3"],
-      "4 Serisi": ["420i", "430i", "420d", "430d", "M4"],
-      "5 Serisi": ["520i", "530i", "520d", "530d", "M5"],
-      "X1": ["sDrive18i", "xDrive20i", "sDrive18d", "xDrive20d"],
-      "X3": ["xDrive20i", "xDrive30i", "xDrive20d", "xDrive30d", "M40i"],
-      "X5": ["xDrive30i", "xDrive40i", "xDrive30d", "M50i"]
-    },
-    "Citroen": {
-      "C3": ["1.2 PureTech", "1.5 BlueHDi"],
-      "C4": ["1.2 PureTech", "1.5 BlueHDi"],
-      "C5": ["1.6 THP", "2.0 HDi"]
-    },
-    "Dacia": {
-      "Duster": ["1.0 TCe", "1.3 TCe", "1.5 Blue dCi"],
-      "Sandero": ["1.0 SCe", "1.0 TCe", "1.5 Blue dCi"],
-      "Logan": ["1.0 SCe", "1.0 TCe", "1.5 Blue dCi"]
-    },
-    "Fiat": {
-      "Egea": ["1.3 Multijet", "1.6 Multijet", "1.4 Fire", "1.3 FireFly"],
-      "500": ["1.0 Hybrid", "1.2 Fire"],
-      "Doblo": ["1.3 Multijet", "1.6 Multijet", "1.4 Fire"]
-    },
-    "Ford": {
-      "Focus": ["1.0 EcoBoost", "1.5 EcoBoost", "1.5 EcoBlue", "2.3 EcoBoost ST"],
-      "Fiesta": ["1.0 EcoBoost", "1.1 Ti-VCT", "1.5 TDCi", "ST"],
-      "Kuga": ["1.5 EcoBoost", "2.0 EcoBlue", "2.5 PHEV"],
-      "Mondeo": ["1.5 EcoBoost", "2.0 EcoBlue", "2.0 Hybrid"]
-    },
-    "Honda": {
-      "Civic": ["1.0 VTEC", "1.5 VTEC", "2.0 Type R"],
-      "CR-V": ["1.5 VTEC", "2.0 i-MMD Hybrid"],
-      "Jazz": ["1.3 i-VTEC", "1.5 i-VTEC", "e:HEV"]
-    },
-    "Hyundai": {
-      "i10": ["1.0 MPI", "1.2 MPI"],
-      "i20": ["1.0 T-GDI", "1.4 MPI", "1.6 T-GDI N"],
-      "Tucson": ["1.6 T-GDI", "1.6 CRDi", "1.6 T-GDI Hybrid"],
-      "Santa Fe": ["2.2 CRDi", "1.6 T-GDI Hybrid"]
-    },
-    "Kia": {
-      "Picanto": ["1.0 MPI", "1.2 MPI"],
-      "Rio": ["1.0 T-GDI", "1.2 MPI", "1.4 MPI"],
-      "Sportage": ["1.6 T-GDI", "1.6 CRDi", "1.6 T-GDI Hybrid"],
-      "Sorento": ["2.2 CRDi", "1.6 T-GDI Hybrid"]
-    },
-    "Mercedes": {
-      "A Serisi": ["A180", "A200", "A220", "A250", "AMG A35", "AMG A45"],
-      "B Serisi": ["B180", "B200", "B220"],
-      "C Serisi": ["C180", "C200", "C300", "C220d", "AMG C43", "AMG C63"],
-      "E Serisi": ["E200", "E220d", "E300", "E350", "AMG E53", "AMG E63"],
-      "GLA": ["GLA200", "GLA250", "AMG GLA35", "AMG GLA45"],
-      "GLC": ["GLC200", "GLC300", "AMG GLC43", "AMG GLC63"]
-    },
-    "Nissan": {
-      "Micra": ["1.0 IG-T", "1.0 DIG-T"],
-      "Qashqai": ["1.3 DIG-T", "1.5 dCi"],
-      "Juke": ["1.0 DIG-T", "1.6 DIG-T"],
-      "X-Trail": ["1.7 dCi", "1.3 DIG-T"]
-    },
-    "Opel": {
-      "Corsa": ["1.2", "1.2 Turbo", "1.5 CDTI"],
-      "Astra": ["1.2 Turbo", "1.4 Turbo", "1.5 CDTI"],
-      "Insignia": ["1.5 Turbo", "2.0 CDTI", "2.0 Turbo"],
-      "Mokka": ["1.2 Turbo", "1.5 CDTI", "Elektrik"]
-    },
-    "Peugeot": {
-      "208": ["1.2 PureTech", "1.5 BlueHDi", "e-208"],
-      "2008": ["1.2 PureTech", "1.5 BlueHDi", "e-2008"],
-      "3008": ["1.2 PureTech", "1.5 BlueHDi", "1.6 Hybrid"],
-      "508": ["1.6 PureTech", "1.5 BlueHDi", "1.6 Hybrid"]
-    },
-    "Renault": {
-      "Clio": ["1.0 TCe", "1.3 TCe", "1.5 Blue dCi", "E-TECH"],
-      "Megane": ["1.3 TCe", "1.5 Blue dCi", "E-TECH"],
-      "Captur": ["1.0 TCe", "1.3 TCe", "1.5 Blue dCi", "E-TECH"],
-      "Kadjar": ["1.3 TCe", "1.5 Blue dCi"]
-    },
+      "Audi": {
+        "A1": ["1.0 TFSI", "1.5 TFSI", "2.0 TDI", "A1 Sportback"],
+        "A3": ["1.0 TFSI", "1.5 TFSI", "2.0 TDI", "A3 Sportback", "A3 Sedan", "S3", "RS3"],
+        "A4": ["1.4 TFSI", "2.0 TDI", "A4 Avant", "A4 Allroad", "S4", "RS4"],
+        "A5": ["1.4 TFSI", "2.0 TDI", "A5 Sportback", "A5 Cabriolet", "S5", "RS5"],
+        "A6": ["1.8 TFSI", "2.0 TDI", "A6 Avant", "S6", "RS6"],
+        "A7": ["2.0 TDI", "A7 Sportback", "S7", "RS7"],
+        "A8": ["3.0 TDI", "A8 L", "S8", "RS8"],
+        "Q2": ["1.0 TFSI", "1.5 TFSI", "2.0 TDI", "Q2 Sportback"],
+        "Q3": ["1.5 TFSI", "2.0 TDI", "Q3 Sportback", "RS Q3"],
+        "Q5": ["2.0 TDI", "2.0 TFSI", "Q5 Sportback", "S Q5", "RS Q5"],
+        "Q7": ["3.0 TDI", "Q7 55 TFSI", "SQ7", "RS Q7"],
+        "Q8": ["3.0 TDI", "Q8 55 TFSI", "SQ8", "RS Q8"],
+        "TT": ["1.8 TFSI", "2.0 TFSI", "TT Roadster", "TT RS"],
+        "R8": ["V8", "V10", "R8 Spyder"]
+      },
+      "BMW": {
+        "1 Series": ["114i", "116i", "118i", "120d", "M135i"],
+        "2 Series": ["218i", "220i", "225d", "M240i", "2 Series Gran Coupe"],
+        "3 Series": ["318i", "320i", "320d", "330i", "330d", "M340i", "M3"],
+        "4 Series": ["420i", "430i", "440i", "M4"],
+        "5 Series": ["520i", "520d", "530i", "530d", "540i", "M5"],
+        "6 Series": ["630i", "640i", "650i", "M6"],
+        "7 Series": ["730d", "740i", "750i", "740e", "M760Li"],
+        "X1": ["xDrive18d", "xDrive20i", "xDrive25i", "xDrive30e"],
+        "X2": ["xDrive18i", "xDrive20i", "M35i"],
+        "X3": ["xDrive20i", "xDrive30d", "X3 M", "M40i"],
+        "X4": ["xDrive20i", "xDrive30d", "X4 M", "M40i"],
+        "X5": ["xDrive30d", "xDrive40i", "X5 M", "M50d"],
+        "X6": ["xDrive30d", "X6 M", "M50i"],
+        "X7": ["xDrive40i", "xDrive30d", "X7 M50i"],
+        "i3": ["Electric"],
+        "i4": ["Electric"],
+        "i8": ["Plug-in Hybrid"]
+      },
+      "Citroen": {
+        "C1": ["1.0", "C1 Airscape"],
+        "C3": ["1.2 PureTech", "1.5 BlueHDi", "C3 Aircross"],
+        "C4": ["1.6", "C4 Cactus", "C4 Picasso"],
+        "C5": ["1.6", "C5 Aircross"],
+        "Berlingo": ["1.5 BlueHDi", "Berlingo Van"],
+        "DS3": ["1.2 PureTech", "DS3 Crossback"],
+        "DS4": ["DS4 Crossback"]
+      },
+      "Dacia": {
+        "Sandero": ["1.0", "Sandero Stepway", "Sandero RS"],
+        "Logan": ["1.5 dCi", "Logan MCV"],
+        "Dokker": ["1.5 dCi", "Dokker Van"],
+        "Lodgy": ["1.5 dCi", "Lodgy Stepway"]
+      },
+      "Ferrari": {
+        "Portofino": ["V8", "Portofino M"],
+        "Roma": ["V8"],
+        "812 Superfast": ["V12", "812 GTS"],
+        "GTC4Lusso": ["V8", "GTC4Lusso T"],
+        "F8 Tributo": ["V8"],
+        "LaFerrari": ["V12 Hybrid"]
+      },
+      "Fiat": {
+        "Panda": ["1.2", "Panda City Cross", "Panda Cross"],
+        "500": ["1.2", "500X", "500L", "500 Electric", "Abarth 595"],
+        "Tipo": ["1.4", "Tipo Station Wagon", "Tipo Cross"],
+        "Punto": ["1.2", "1.3 Multijet", "Punto Evo"],
+        "Doblo": ["1.6 Multijet", "Doblo Cargo"],
+        "Fiorino": ["1.3 Multijet", "Fiorino Combi"]
+      },
+      "Ford": {
+        "Fiesta": ["1.1", "1.0 Ecoboost", "Fiesta ST", "1.5 TDCi"],
+        "Focus": ["1.0 Ecoboost", "1.5 TDCi", "Focus Active", "Focus ST", "Focus RS"],
+        "Mondeo": ["1.5 Ecoboost", "2.0 TDCi", "Mondeo Hybrid", "Mondeo Vignale"],
+        "Kuga": ["1.5 Ecoboost", "1.5 TDCi", "Kuga Hybrid", "Kuga ST-Line"],
+        "Edge": ["2.0 TDCi", "Edge ST"],
+        "Mustang": ["EcoBoost", "GT", "Mach 1", "Mustang Shelby GT500"],
+        "Ranger": ["2.2 TDCi", "Ranger Wildtrak", "Ranger Raptor"],
+        "Transit": ["Transit Custom", "Transit Connect", "Transit Tourneo"]
+      },
+      
+        "Honda": {
+          "Civic": ["1.0 Turbo", "1.5 Turbo", "1.6 i-DTEC", "Civic Type R"],
+          "Accord": ["1.5 Turbo", "2.0 Hybrid", "Accord Sedan"],
+          "HR-V": ["1.5 i-VTEC", "HR-V Hybrid"],
+          "CR-V": ["1.5 Turbo", "2.0 Hybrid", "CR-V PHEV"],
+          "Jazz": ["1.3", "Jazz Crosstar", "Jazz Hybrid"],
+          "Pilot": ["3.5 V6", "Pilot Hybrid"],
+          "Ridgeline": ["3.5 V6"]
+        },
+        "Hyundai": {
+          "i10": ["1.0", "1.2", "i10 N Line"],
+          "i20": ["1.2", "1.0 Turbo", "i20 N"],
+          "i30": ["1.0 T-GDI", "1.5 T-GDI", "i30 N", "i30 Fastback"],
+          "Tucson": ["1.6 T-GDI", "1.6 CRDi", "Tucson Hybrid", "Tucson N Line"],
+          "Santa Fe": ["2.2 CRDi", "Santa Fe Hybrid", "Santa Fe Plug-in Hybrid"],
+          "Kona": ["1.0 T-GDI", "1.6 CRDi", "Kona Electric", "Kona N"],
+          "Palisade": ["3.8 V6"],
+          "Nexo": ["Fuel Cell"]
+        },
+        "Jaguar": {
+          "XE": ["2.0 i4", "XE R-Dynamic", "XE P300"],
+          "XF": ["2.0 i4", "XF R-Dynamic", "XF Sportbrake"],
+          "F-Type": ["2.0", "3.0 V6", "5.0 V8", "F-Type R"],
+          "E-Pace": ["2.0 i4", "E-Pace R-Dynamic"],
+          "F-Pace": ["2.0 i4", "F-Pace SVR", "F-Pace P400e"],
+          "I-Pace": ["Electric"]
+        },
+        "Jeep": {
+          "Renegade": ["1.0 Turbo", "1.6 Multijet", "Renegade 4xe"],
+          "Compass": ["1.4 Turbo", "2.0 Multijet", "Compass PHEV"],
+          "Cherokee": ["2.0 Turbo", "Cherokee 4xe"],
+          "Grand Cherokee": ["3.6 V6", "Grand Cherokee PHEV", "SRT"],
+          "Wrangler": ["2.0 Turbo", "2.2 Multijet", "Wrangler 4xe"]
+        },
+        "Kia": {
+          "Picanto": ["1.0", "1.2", "Picanto GT-Line"],
+          "Rio": ["1.2", "1.4", "1.0 T-GDI"],
+          "Ceed": ["1.0 T-GDI", "1.4 T-GDI", "Ceed GT", "Ceed Sportswagon"],
+          "Niro": ["1.6 Hybrid", "Niro PHEV", "Niro EV"],
+          "Sportage": ["1.6 T-GDI", "1.6 CRDi", "Sportage Hybrid", "Sportage Plug-in Hybrid"],
+          "Seltos": ["1.6 Turbo", "Seltos 4x4"],
+          "Stonic": ["1.0 T-GDI", "1.4", "Stonic GT-Line"],
+          "Stinger": ["2.0 Turbo", "3.3 V6", "Stinger GT"]
+        },
+        "Land Rover": {
+          "Defender": ["2.0", "Defender 110", "Defender 130", "Defender V8"],
+          "Discovery": ["2.0", "Discovery Sport", "Discovery P300e"],
+          "Range Rover": ["3.0 V6", "P400e", "Range Rover Sport", "Range Rover Velar", "Range Rover Evoque"]
+        },
+        "Lexus": {
+          "CT": ["1.8 Hybrid"],
+          "IS": ["200t", "300h", "F Sport"],
+          "ES": ["300h", "ES F Sport"],
+          "RX": ["300", "450h", "RX F Sport", "RX L"],
+          "NX": ["300h", "NX 450h+", "NX F Sport"],
+          "LC": ["500h", "LC 500"],
+          "LS": ["500h", "LS 500"]
+        },
+        "Lincoln": {
+          "Aviator": ["3.0 Turbo", "Aviator Grand Touring"],
+          "Corsair": ["2.0 Turbo", "Corsair Grand Touring"],
+          "Nautilus": ["2.0 Turbo", "Nautilus Reserve"],
+          "Navigator": ["3.5 V6", "Navigator L"]
+        },
+        "Mercedes-Benz": {
+        "A-Class": ["A 180", "A 200", "A 250", "A 35 AMG", "A 45 AMG", "A-Class Sedan"],
+        "B-Class": ["B 180", "B 200", "B 250", "B-Class Electric Drive"],
+        "C-Class": ["C 180", "C 200", "C 300", "C 350e", "C 63 AMG", "C-Class Sedan", "C-Class Wagon"],
+        "E-Class": ["E 200", "E 300", "E 350e", "E 400", "E 450", "E 63 AMG", "E-Class Sedan", "E-Class Coupe", "E-Class Wagon"],
+        "S-Class": ["S 350d", "S 400", "S 500", "S 600", "S 63 AMG", "S 65 AMG", "S-Class Sedan"],
+        "CLA": ["CLA 180", "CLA 200", "CLA 250", "CLA 45 AMG", "CLA Shooting Brake"],
+        "CLS": ["CLS 350", "CLS 400", "CLS 500", "CLS 63 AMG"],
+        "GLA": ["GLA 180", "GLA 200", "GLA 250", "GLA 45 AMG", "GLA 35 AMG"],
+        "GLB": ["GLB 200", "GLB 250", "GLB 35 AMG", "GLB 180d", "GLB 200d"],
+        "GLC": ["GLC 200", "GLC 250", "GLC 300", "GLC 43 AMG", "GLC 63 AMG", "GLC Coupe", "GLC Wagon"],
+        "GLE": ["GLE 350d", "GLE 400", "GLE 500", "GLE 63 AMG", "GLE Coupe", "GLE SUV"],
+        "GLS": ["GLS 350d", "GLS 500", "GLS 63 AMG", "GLS Maybach"],
+        "EQC": ["Electric"],
+        "SLC": ["SLC 180", "SLC 200", "SLC 300", "SLC 43 AMG"],
+        "SL": ["SL 400", "SL 500", "SL 63 AMG"],
+        "G-Class": ["G 350d", "G 500", "G 63 AMG", "G 65 AMG"]
+      },
+    
+      "Mazda": {
+        "2": ["1.5", "2.0", "Mazda2 Hybrid"],
+        "3": ["1.5", "2.0", "Mazda3 Hatchback", "Mazda3 Sedan"],
+        "6": ["2.0", "2.5", "Mazda6 Wagon", "Mazda6 Sedan"],
+        "CX-3": ["1.5", "2.0", "CX-3 AWD"],
+        "CX-5": ["2.0", "2.2 Diesel", "CX-5 AWD", "CX-5 Hybrid"],
+        "CX-30": ["1.8 Diesel", "2.0", "CX-30 AWD"],
+        "CX-50": ["2.5", "CX-50 AWD"],
+        "MX-5": ["1.5", "2.0", "MX-5 RF"],
+        "MX-30": ["Electric"]
+      },
+      "Mitsubishi": {
+        "Space Star": ["1.0", "1.2"],
+        "Lancer": ["1.6", "2.0"],
+        "Outlander": ["2.0", "2.4 Hybrid", "Outlander PHEV"],
+        "Eclipse Cross": ["1.5 Turbo", "Eclipse Cross PHEV"],
+        "ASX": ["1.6", "2.0", "ASX 4WD"]
+      },
+      "Nissan": {
+        "Micra": ["1.0", "1.5 dCi", "Micra N-Sport"],
+        "Juke": ["1.0 Turbo", "1.6", "Juke Hybrid"],
+        "Qashqai": ["1.3 Turbo", "1.5 dCi", "Qashqai e-Power"],
+        "X-Trail": ["1.6 dCi", "X-Trail e-Power", "2.0 Hybrid"],
+        "Navara": ["2.3 dCi", "Navara N-Trek"],
+        "Leaf": ["Electric"],
+        "Z": ["370Z", "Z Roadster"]
+      },
+      "Opel": {
+        "Corsa": ["1.2", "1.3 Diesel", "Corsa-e"],
+        "Astra": ["1.2", "1.5 Diesel", "Astra GTC", "Astra Sports Tourer"],
+        "Insignia": ["1.5", "2.0 Diesel", "Insignia Grand Sport"],
+        "Mokka": ["1.2 Turbo", "Mokka-e"],
+        "Grandland": ["1.2 Turbo", "1.5 Diesel", "Grandland Hybrid"],
+        "Zafira": ["1.6", "Zafira Life"]
+      },
+      "Peugeot": {
+        "108": ["1.0", "1.2", "Peugeot 108 Top!"],
+        "208": ["1.2", "1.5 BlueHDi", "208 Electric", "208 GTi"],
+        "308": ["1.2", "1.5 BlueHDi", "308 Hybrid", "308 SW"],
+        "3008": ["1.6 Turbo", "1.5 BlueHDi", "3008 Hybrid", "3008 GT"],
+        "5008": ["1.5 BlueHDi", "5008 Hybrid", "5008 GT"],
+        "Partner": ["1.5 BlueHDi", "Partner Tepee", "Partner Electric"]
+      },
+      "Porsche": {
+        "911": ["Carrera", "Turbo", "GT3", "911 Targa"],
+        "Cayenne": ["3.0 V6", "Turbo", "Cayenne S", "Cayenne Hybrid"],
+        "Macan": ["2.0", "Macan Turbo", "Macan S"],
+        "Panamera": ["4S", "Turbo", "Panamera E-Hybrid"],
+        "Taycan": ["Electric"]
+      },
+      "Renault": {
+        "Twingo": ["1.0", "Twingo Electric"],
+        "Clio": ["1.2", "Clio E-Tech Hybrid", "Clio RS Line"],
+        "Megane": ["1.3 TCe", "1.5 dCi", "Megane E-Tech", "Megane Sport Tourer"],
+        "Kadjar": ["1.3 TCe", "1.5 dCi", "Kadjar Hybrid"],
+        "Captur": ["1.0 TCe", "Captur E-Tech Hybrid", "Captur RS Line"],
+        "Koleos": ["2.0 dCi", "Koleos E-Tech", "Koleos Signature"],
+        "Master": ["2.3 dCi", "Master Van", "Master Electric"]
+      },
+      "Rolls-Royce": {
+        "Phantom": ["6.75 V12"],
+        "Ghost": ["6.75 V12"],
+        "Cullinan": ["6.75 V12"],
+        "Wraith": ["6.6 V12"],
+        "Dawn": ["6.6 V12"]
+      },
+    
+    
     "Seat": {
       "Ibiza": ["1.0 EcoTSI", "1.5 TSI", "1.6 TDI"],
       "Leon": ["1.0 TSI", "1.5 TSI", "2.0 TDI", "Cupra"],

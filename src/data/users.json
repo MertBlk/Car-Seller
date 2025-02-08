@@ -1,0 +1,9 @@
+{
+    "users":{
+        "1":{
+            "id": 1,
+            "name": "Mert Bölükbaşı",
+            "email": "mert@mail.com",
+            "password": "123456"
+        }
+}}

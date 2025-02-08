@@ -6,6 +6,7 @@ import carOptions from '../data/carOptions.json';
 function Filters({ selectedBrands, setSelectedBrands, selectedFuels, setSelectedFuels, ...props }) {
   const [expandedBrand, setExpandedBrand] = useState(null);
 
+
   const brands = Object.keys(carOptions.carSeries).map(brand => ({
     name: brand,
     series: Object.keys(carOptions.carSeries[brand])
@@ -13,17 +14,18 @@ function Filters({ selectedBrands, setSelectedBrands, selectedFuels, setSelected
 
   const fuels = carOptions.fuelTypes.map(fuel => ({
     name: fuel,
-    count: Math.floor(Math.random() * 1000) + 100 // Örnek sayı
+    count: Math.floor(Math.random() * 1000) + 100 // Example number
   }));
 
-  // Olay işleyicileri
+
+ 
   const handleBrandSelect = (brandName) => {
     if (expandedBrand === brandName) {
       setExpandedBrand(null);
     } else {
       setExpandedBrand(brandName);
     }
-    
+
     if (selectedBrands.includes(brandName.toLowerCase())) {
       setSelectedBrands(selectedBrands.filter(b => b !== brandName.toLowerCase()));
     } else {
@@ -39,11 +41,11 @@ function Filters({ selectedBrands, setSelectedBrands, selectedFuels, setSelected
         <div className="filter-content">
           <div className="filter-item main-category">
             <span className="category-name">Vasıta</span>
-            <span className="count">(8.745)</span>
+            
           </div>
           <div className="filter-item sub-category active">
             <span className="category-name">Otomobil</span>
-            <span className="count">(6.234)</span>
+            
           </div>
         </div>
       </div>
@@ -63,7 +65,7 @@ function Filters({ selectedBrands, setSelectedBrands, selectedFuels, setSelected
                   {expandedBrand === brand.name ? '' : ''}
                 </span>
               </div>
-              
+
               {expandedBrand === brand.name && (
                 <div className="series-list">
                   {brand.series.map((series) => (
@@ -104,35 +106,42 @@ function Filters({ selectedBrands, setSelectedBrands, selectedFuels, setSelected
 }
 
 function Products() {
-  const [allCars] = useState(cars); // orijinal araç listesi
+  const [allCars] = useState(cars); // Original car list
   const [filteredCars, setFilteredCars] = useState(cars);
   const [selectedBrands, setSelectedBrands] = useState([]);
+  const [selectedSeries, setSelectedSeries] = useState([]);
   const [selectedFuels, setSelectedFuels] = useState([]);
   const [priceRange, setPriceRange] = useState({ min: '', max: '' });
   const [yearRange, setYearRange] = useState({ min: '', max: '' });
 
   useEffect(() => {
     applyFilters();
-  }, [selectedBrands, selectedFuels, priceRange, yearRange]);
+  }, [selectedBrands,selectedSeries, selectedFuels, priceRange, yearRange]);
 
   const applyFilters = () => {
     let result = [...allCars];
 
-    // Marka filtresi
+    // Apply brand filter
     if (selectedBrands.length > 0) {
       result = result.filter(car => 
         selectedBrands.map(b => b.toLowerCase()).includes(car.brand.toLowerCase())
       );
     }
+    if (selectedSeries.length > 0) {
+      result = result.filter(car => {
+        const carSeriesKey = `${car.brand.toLowerCase()}__${car.series.toLowerCase()}`;
+        return selectedSeries.includes(carSeriesKey);
+      });
+    }
 
-    // Yakıt filtresi
+    // Apply fuel filter
     if (selectedFuels.length > 0) {
       result = result.filter(car => 
         selectedFuels.map(f => f.toLowerCase()).includes(car.fuel.toLowerCase())
       );
     }
 
-    // Fiyat aralığı
+    // Apply price range filter
     if (priceRange.min) {
       result = result.filter(car => car.price >= Number(priceRange.min));
     }
@@ -140,7 +149,7 @@ function Products() {
       result = result.filter(car => car.price <= Number(priceRange.max));
     }
 
-    // Yıl aralığı
+    // Apply year range filter
     if (yearRange.min) {
       result = result.filter(car => car.year >= Number(yearRange.min));
     }
